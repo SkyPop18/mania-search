@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search | by Coding Mania</title>
+  <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+</head>
+
+
+<body>
+  <button id="changeBackgroundBtn">➤</button>
+  <div id="clock"></div>
+  
+  <div class="date-display" id="dateDisplay"></div>
+
+    <h1 id="randomText"> Coding Is love ❤</h1>
+
+    <div class="search-container">
+        <form action="https://www.google.com/search" method="GET" onsubmit="return validateSearch()">
+            <input type="text" id="searchInput" placeholder="Search Google..." name="q">
+            <button type="submit">Search</button>
+        </form>
+    </div>
+
+  <div class="search-replit-container">
+      <div class="replit-circle" id="replitCircle"></div>
+      <div class="replit-circle-tooltip">Replit</div>
+  </div>
+
+  <div class="github-circle-container">
+      <div class="github-circle" id="githubCircle"></div>
+      <div class="github-circle-tooltip">GitHub</div>
+  </div>
+
+  <div class="minecraft-circle-container">
+      <div class="minecraft-circle" id="minecraftCircle"></div>
+      <div class="minecraft-circle-tooltip">Minecraft</div>
+  </div>
+
+  <!--
+    <div class="rhombus-container">
+      <div class="rectangle-container">
+          <div class="rectangle">
+              <span class="rectangle-text"></span>
+              <div class="red-circle-container">
+                <div class="red-circle" id="youtubeCircle"></div>
+                <div class="red-circle-tooltip">YouTube</div>
+                
+                  <div class="red-circle" id="instagramCircle"></div>
+                  <div class="red-circle-tooltip">Instagram</div>
+
+                  <div class="red-circle" id="discordCircle"></div>
+                  <div class="red-circle-tooltip">Discord</div>
+
+                  <div class="red-circle" id="whatsappCircle"></div>
+                  <div class="red-circle-tooltip">WhatsApp</div>
+
+                  <div class="red-circle" id="facebookCircle"></div>
+                  <div class="red-circle-tooltip">Facebook</div>
+
+                  <div class="red-circle" id="gmailCircle"></div>
+                  <div class="red-circle-tooltip">Gmail</div> 
+                
+              </div>
+          </div>
+      </div>
+  </div>
+
+  -->
+
+  <div class="content-wrapper">
+    <div class="top-container">
+        
+    </div>
+    <div class="rhombus-container">
+        <div class="rectangle-container">
+            <div class="rectangle">
+                <span class="rectangle-text"></span>
+                <div class="red-circle-container">
+                    <!-- Each icon-name pair is wrapped in a container for alignment -->
+                    <div class="icon-container">
+                        <button class="addicon" id="new1">+</button>
+                        <span class="website-name" id="name1"></span>
+                    </div>
+
+                    <div class="icon-container">
+                        <button class="addicon" id="new2">+</button>
+                        <span class="website-name" id="name2"></span>
+                    </div>
+
+                    <div class="icon-container">
+                        <button class="addicon" id="new3">+</button>
+                        <span class="website-name" id="name3"></span>
+                    </div>
+
+                    <div class="icon-container">
+                        <button class="addicon" id="new4">+</button>
+                        <span class="website-name" id="name4"></span>
+                    </div>
+
+                    <div class="icon-container">
+                        <button class="addicon" id="new5">+</button>
+                        <span class="website-name" id="name5"></span>
+                    </div>
+
+                    <div class="icon-container">
+                        <button class="addicon" id="new6">+</button>
+                        <span class="website-name" id="name6"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="square-container">
+        <div class="square">
+            <div class="green-circle-container">
+                <div class="icon-container">
+                    <button class="addicon" id="new7">+</button>
+                    <span class="website-name" id="name7"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="sites-box">
+        <div class="row" style="display: flex; flex-direction: column;">
+            <div class="icon-container">
+                <button class="addicon" id="new8">+</button>
+                <span class="website-name" id="name8"></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Popup Structure -->
+<div id="popup" class="popup">
+    <div class="popup-content">
+        <h3>Add New Website (if this pops up again then u can edit this)</h3>
+        
+        <label for="websiteName">Website Name:</label>
+        <input type="text" id="websiteName" maxlength="10" placeholder="Enter website name (max 10 characters)" />
+        
+        <label for="websiteURL">Website URL:</label>
+        <input type="text" id="websiteURL" placeholder="Enter website address" />
+        
+        <button id="saveButton">Save</button>
+        <button id="closeButton">Close</button>
+    </div>
+</div>
+
+
+<!-- CSS for Popup -->
+
+
+
+
+  <h2 id="madeBy">Made By Akshat Sharma</h2>
+  <script>
+      document.getElementById('madeBy').addEventListener('click', function () {
+          window.location.href = 'https://www.instagram.com/_sky_ak47/';
+      });
+  </script>
+
+  <script>
+// Helper function to add "https://" if missing
+function ensureUrlPrefix(url) {
+  return url.startsWith("https://") ? url : "https://" + url;
+}
+
+// Function to fetch high-quality favicon using the provided API
+function fetchFavicon(url) {
+  const faviconUrl = `https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=${url}&size=64`;
+  return faviconUrl;
+}
+
+// Open popup and apply blur effect
+document.querySelectorAll('.addicon').forEach(button => {
+  button.addEventListener('click', function() {
+      document.getElementById('popup').style.display = 'flex';
+      document.querySelector('.content-wrapper').classList.add('blur');
+      
+      // Set target button ID in the Save button's data attribute
+      document.getElementById('saveButton').setAttribute('data-target', button.id);
+  });
+});
+
+// Close popup and remove blur effect
+document.getElementById('closeButton').addEventListener('click', function() {
+  document.getElementById('popup').style.display = 'none';
+  document.querySelector('.content-wrapper').classList.remove('blur');
+});
+
+// Save website info to localStorage and display it under the button
+document.getElementById('saveButton').addEventListener('click', function() {
+  const websiteName = document.getElementById('websiteName').value;
+  let websiteURL = document.getElementById('websiteURL').value;
+
+  if (websiteName && websiteURL) {
+      // Ensure "https://" prefix
+      websiteURL = ensureUrlPrefix(websiteURL);
+
+      // Get the target button ID and save data with that key
+      const targetButtonId = this.getAttribute('data-target');
+      localStorage.setItem(targetButtonId, JSON.stringify({ name: websiteName, url: websiteURL }));
+
+      // Fetch and set the favicon as the background image of the button
+      const faviconUrl = fetchFavicon(websiteURL);
+
+      // Display the saved name under the target button
+      document.getElementById(`name${targetButtonId.replace('new', '')}`).textContent = websiteName;
+
+      // Add event listener to redirect to the saved URL
+      document.getElementById(targetButtonId).onclick = function() {
+          window.open(websiteURL, '_blank');
+      };
+
+      // Set favicon as the background image of the button
+      document.getElementById(targetButtonId).style.backgroundImage = `url(${faviconUrl})`;
+
+      // Close popup and clear input fields
+      document.getElementById('popup').style.display = 'none';
+      document.querySelector('.content-wrapper').classList.remove('blur');
+      document.getElementById('websiteName').value = '';
+      document.getElementById('websiteURL').value = '';
+  } else {
+      alert('Please fill in both fields.');
+  }
+});
+
+// Load saved data on page load
+window.addEventListener('load', function() {
+  document.querySelectorAll('.addicon').forEach(button => {
+      const buttonId = button.id;
+      const savedData = JSON.parse(localStorage.getItem(buttonId));
+
+      if (savedData) {
+          // Display the saved name under the button
+          document.getElementById(`name${buttonId.replace('new', '')}`).textContent = savedData.name;
+
+          // Add click event to open the saved URL
+          button.onclick = function() {
+              window.open(savedData.url, '_blank');
+          };
+
+          // Fetch and set the favicon from the stored URL
+          const faviconUrl = fetchFavicon(savedData.url);
+          button.style.backgroundImage = `url(${faviconUrl})`;
+      }
+  });
+});
+  </script>
+
+
+  <script src="main.js"></script>
+  <script>
+    document.getElementById('githubCircle').addEventListener('click', function () {
+        window.open('https://github.com/Coiding-Mania', '_blank');
+    });
+  </script>
+
+  <script>
+
+      document.getElementById('minecraftCircle').addEventListener('click', function () {
+          window.open('https://minecraft.net', '_blank');
+      });
+  </script>
+  
+  <script>
+   
+    document.getElementById('replitCircle').addEventListener('click', function () {
+        window.open('https://replit.com/@unknownplayz141', '_blank');
+    });
+  </script>
+
+   <script>
+    document.getElementById('gmailCircle').addEventListener('click', function () {
+            window.open('https://mail.google.com/mail', '_blank');
+        });
+      </script>
+  
+  <script>
+     
+      const images = [
+        'https://i.ibb.co/9pFmq8j/pexels-photo.jpg',
+        'https://i.ibb.co/LNw5gWb/free-photo-of-abundance-of-beads.jpg',
+        'https://images.pexels.com/photos/531880/pexels-photo-531880.jpeg',
+        'https://images.pexels.com/photos/1410224/pexels-photo-1410224.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+        
+        'https://images.pexels.com/photos/1450963/pexels-photo-1450963.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+      ];
+
+      const button = document.getElementById('changeBackgroundBtn');
+      let currentIndex = 0;
+
+      button.addEventListener('click', () => {
+          currentIndex = (currentIndex + 1) % images.length;
+          document.body.style.backgroundImage = `url('${images[currentIndex]}')`;
+      });
+  </script>
+  
+  </body>
+
+  </html>
+ 
